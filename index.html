@@ -1,238 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Java Stream Examples - Sachin Patil</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #2c3e50;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
-        }
-        .card {
-            background: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        pre {
-            background: #272822;
-            color: #f8f8f2;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-        .output {
-            background: #eafaf1;
-            padding: 10px;
-            border-left: 5px solid green;
-            margin-top: 10px;
-        }
-        .pagination {
-            text-align: center;
-            margin: 20px;
-        }
-        button {
-            padding: 10px 20px;
-            margin: 5px;
-            border: none;
-            background: #3498db;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #2980b9;
-        }
-        footer {
-            text-align: center;
-            padding: 15px;
-            background: #2c3e50;
-            color: white;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Java Streams Theory + Examples</title>
+<style>
+body {font-family: Arial; background:#f4f6f8; margin:0}
+header {background:#2c3e50; color:white; padding:20px; text-align:center}
+.container {width:80%; margin:auto; padding:20px}
+.card {background:white; padding:20px; margin-bottom:20px; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1)}
+pre {background:#272822; color:#f8f8f2; padding:10px; border-radius:5px}
+.output {background:#eafaf1; padding:10px; margin-top:10px; border-left:5px solid green}
+.theory {background:#eef3ff; padding:10px; margin-bottom:10px; border-left:5px solid #3498db}
+button {padding:10px; margin:5px; background:#3498db; color:white; border:none; border-radius:5px}
+</style>
 </head>
 <body>
-
 <header>
-    <h1>Java Stream Examples</h1>
-    <p>Author: Sachin Patil | Senior Software Engineer</p>
+<h1>Java Stream Theory + Examples</h1>
+<p>Author: Sachin Patil | Senior Software Engineer</p>
 </header>
-
 <div class="container">
 
-    <!-- PAGE 1 -->
-    <div class="page">
-
-        <div class="card">
-            <h2>1. Min & Max</h2>
+<div class="card">
+<h2>Java Stream - Parts</h2>
+<div class="theory">
+A Java Stream consists of three main parts:
+<ul>
+<li><b>1. Source:</b> Where the stream originates (Collection, Array, etc.)</li>
+<li><b>2. Intermediate Operations:</b> Transformations like filter(), map(), sorted()</li>
+<li><b>3. Terminal Operation:</b> Produces result like collect(), forEach(), count()</li>
+</ul>
+</div>
 <pre>
-List<Integer> list = Arrays.asList(100,1,-1,6776);
-Integer min = list.stream().min(Integer::compareTo).get();
-Integer max = list.stream().max(Integer::compareTo).get();
-</pre>
-            <div class="output">Output: min : -1 max : 6776</div>
-        </div>
+List<Integer> list = Arrays.asList(1,2,3,4);
 
-        <div class="card">
-            <h2>2. Remove Duplicates</h2>
+list.stream()                 // Source
+    .filter(x -> x % 2 == 0)  // Intermediate
+    .map(x -> x * 2)          // Intermediate
+    .collect(Collectors.toList()); // Terminal
+</pre>
+<div class="output">Output: [4, 8]</div>
+</div>
+
+
+<div class="card">
+<h2>Java Stream - Parts</h2>
+<div class="theory">
+A Java Stream consists of three main parts:
+<ul>
+<li><b>1. Source:</b> Where the stream originates (Collection, Array, etc.)</li>
+<li><b>2. Intermediate Operations:</b> Transformations like filter(), map(), sorted()</li>
+<li><b>3. Terminal Operation:</b> Produces result like collect(), forEach(), count()</li>
+</ul>
+</div>
 <pre>
-List<Integer> list = Arrays.asList(1,4,1,2,5,2,6,3);
-list.stream().distinct().collect(Collectors.toList());
+List<Integer> list = Arrays.asList(1,2,3,4);
+
+list.stream()                 // Source
+    .filter(x -> x % 2 == 0)  // Intermediate
+    .map(x -> x * 2)          // Intermediate
+    .collect(Collectors.toList()); // Terminal
 </pre>
-            <div class="output">Output: [1, 4, 2, 5, 6, 3]</div>
-        </div>
+<div class="output">Output: [4, 8]</div>
+</div>
 
-        <div class="card">
-            <h2>3. Sort Ascending</h2>
-<pre>
-list.stream().sorted().collect(Collectors.toList());
-</pre>
-            <div class="output">Output: [1,2,3,5,7,8,10]</div>
-        </div>
 
-    </div>
+<div class="page">
 
-    <!-- PAGE 2 -->
-    <div class="page" style="display:none;">
+<div class="card">
+<h2>1. Min & Max</h2>
+<div class="theory">Used to find smallest and largest element in a collection using stream operations.</div>
+<pre>list.stream().min(Integer::compareTo);
+list.stream().max(Integer::compareTo);</pre>
+<div class="output">min : -1 max : 6776</div>
+</div>
 
-        <div class="card">
-            <h2>4. Sort Descending</h2>
-<pre>
-list.stream().sorted(Comparator.reverseOrder());
-</pre>
-            <div class="output">Output: [8,7,6,5,4,3,2,1]</div>
-        </div>
+<div class="card">
+<h2>2. Remove Duplicates</h2>
+<div class="theory">distinct() removes duplicate elements from stream.</div>
+<pre>list.stream().distinct()</pre>
+<div class="output">[1, 4, 2, 5, 6, 3]</div>
+</div>
 
-        <div class="card">
-            <h2>5. Uppercase Strings</h2>
-<pre>
-list.stream().map(String::toUpperCase).collect(Collectors.toList());
-</pre>
-            <div class="output">Output: [ARIJEETH, RAKESH, RAVI, AMOGH]</div>
-        </div>
-
-        <div class="card">
-            <h2>6. Sum of Elements</h2>
-<pre>
-int sum = list.stream().mapToInt(val -> val).sum();
-</pre>
-            <div class="output">Output: 36</div>
-        </div>
-
-    </div>
-
-    <!-- PAGE 3 -->
-    <div class="page" style="display:none;">
-
-        <div class="card">
-            <h2>7. Any Match</h2>
-<pre>
-list.stream().anyMatch(str -> str.equals("ravi"));
-</pre>
-            <div class="output">Output: true</div>
-        </div>
-
-        <div class="card">
-            <h2>8. Find First</h2>
-<pre>
-list.stream().findFirst();
-</pre>
-            <div class="output">Output: 1</div>
-        </div>
-
-        <div class="card">
-            <h2>9. Even Numbers</h2>
-<pre>
-list.stream().filter(n -> n % 2 == 0).collect(Collectors.toList());
-</pre>
-            <div class="output">Output: [2,4,6,8,10]</div>
-        </div>
-
-    </div>
-
-    <!-- PAGE 4 -->
-    <div class="page" style="display:none;">
-
-        <div class="card">
-            <h2>10. Count > 10</h2>
-<pre>
-list.stream().filter(n -> n > 10).count();
-</pre>
-            <div class="output">Output: 4</div>
-        </div>
-
-        <div class="card">
-            <h2>11. All Match</h2>
-<pre>
-list.stream().allMatch(n -> n > 5);
-</pre>
-            <div class="output">Output: true</div>
-        </div>
-
-        <div class="card">
-            <h2>12. Second Highest & Top 3</h2>
-<pre>
-list.stream().sorted(reverseOrder()).skip(1).findFirst();
-list.stream().sorted(reverseOrder()).limit(3);
-</pre>
-            <div class="output">
-                Second Highest: 50 <br>
-                Top 3: [100, 50, 5]
-            </div>
-        </div>
-
-    </div>
+<div class="card">
+<h2>3. Sorting Ascending</h2>
+<div class="theory">sorted() sorts elements in natural order.</div>
+<pre>list.stream().sorted()</pre>
+<div class="output">[1,2,3,5,7,8,10]</div>
+</div>
 
 </div>
 
-<div class="pagination">
-    <button onclick="prevPage()">Previous</button>
-    <button onclick="nextPage()">Next</button>
+<div class="page" style="display:none">
+
+<div class="card">
+<h2>4. Sorting Descending</h2>
+<div class="theory">Use Comparator.reverseOrder() for descending sort.</div>
+<pre>list.stream().sorted(Comparator.reverseOrder())</pre>
+<div class="output">[8,7,6,5,4,3,2,1]</div>
 </div>
 
-<footer>
-    © 2026 Sachin Patil | Senior Software Engineer
-</footer>
+<div class="card">
+<h2>5. Uppercase Conversion</h2>
+<div class="theory">map() transforms each element.</div>
+<pre>list.stream().map(String::toUpperCase)</pre>
+<div class="output">[ARIJEETH, RAKESH, RAVI, AMOGH]</div>
+</div>
+
+<div class="card">
+<h2>6. Sum of Elements</h2>
+<div class="theory">mapToInt() converts stream to IntStream and sum() calculates total.</div>
+<pre>list.stream().mapToInt(x -> x).sum()</pre>
+<div class="output">36</div>
+</div>
+
+</div>
+
+<div class="page" style="display:none">
+
+<div class="card">
+<h2>7. anyMatch()</h2>
+<div class="theory">Checks if any element matches given condition.</div>
+<pre>list.stream().anyMatch(x -> x.equals("ravi"))</pre>
+<div class="output">true</div>
+</div>
+
+<div class="card">
+<h2>8. findFirst()</h2>
+<div class="theory">Returns first element of stream.</div>
+<pre>list.stream().findFirst()</pre>
+<div class="output">1</div>
+</div>
+
+<div class="card">
+<h2>9. Even Numbers Filter</h2>
+<div class="theory">filter() selects elements based on condition.</div>
+<pre>list.stream().filter(x -> x % 2 == 0)</pre>
+<div class="output">[2,4,6,8,10]</div>
+</div>
+
+</div>
+
+<div class="page" style="display:none">
+
+<div class="card">
+<h2>10. Count Elements</h2>
+<div class="theory">count() returns number of elements satisfying condition.</div>
+<pre>list.stream().filter(x -> x > 10).count()</pre>
+<div class="output">4</div>
+</div>
+
+<div class="card">
+<h2>11. allMatch()</h2>
+<div class="theory">Checks if all elements satisfy condition.</div>
+<pre>list.stream().allMatch(x -> x > 5)</pre>
+<div class="output">true</div>
+</div>
+
+<div class="card">
+<h2>12. Second Highest & Top 3</h2>
+<div class="theory">Use sorting + skip/limit for ranking problems.</div>
+<pre>sorted(reverse).skip(1).findFirst()
+sorted(reverse).limit(3)</pre>
+<div class="output">Second: 50 | Top3: [100,50,5]</div>
+</div>
+
+</div>
+
+</div>
+
+<div style="text-align:center">
+<button onclick="prev()">Previous</button>
+<button onclick="next()">Next</button>
+</div>
 
 <script>
-    let currentPage = 0;
-    const pages = document.querySelectorAll('.page');
-
-    function showPage(index) {
-        pages.forEach((page, i) => {
-            page.style.display = i === index ? 'block' : 'none';
-        });
-    }
-
-    function nextPage() {
-        if (currentPage < pages.length - 1) {
-            currentPage++;
-            showPage(currentPage);
-        }
-    }
-
-    function prevPage() {
-        if (currentPage > 0) {
-            currentPage--;
-            showPage(currentPage);
-        }
-    }
-
-    showPage(currentPage);
+let index=0;
+const pages=document.querySelectorAll('.page');
+function show(){pages.forEach((p,i)=>p.style.display=i===index?'block':'none')}
+function next(){if(index<pages.length-1){index++;show()}}
+function prev(){if(index>0){index--;show()}}
+show();
 </script>
 
 </body>
