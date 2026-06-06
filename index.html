@@ -1,27 +1,384 @@
-<aside class="sidebar">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Software Engineering Learning Hub</title>
 
-    <ul>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        <li>
-            <a href="../index.html">🏠 Home</a>
-        </li>
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#f5f7fb;
+}
 
-        <li class="menu-title">
-            ☕ Java
-        </li>
+.container{
+    display:flex;
+}
 
-        <li>
-            <a href="streams.html">Streams</a>
-        </li>
+/* Sidebar */
+.sidebar{
+    width:280px;
+    background:#0f172a;
+    color:white;
+    height:100vh;
+    position:fixed;
+    overflow-y:auto;
+}
 
-        <li>
-            <a href="collections.html">Collections</a>
-        </li>
+.profile{
+    padding:25px;
+    text-align:center;
+    border-bottom:1px solid #334155;
+}
 
-        <li>
-            <a href="multithreading.html">Multithreading</a>
-        </li>
+.profile h2{
+    margin-bottom:5px;
+}
 
-    </ul>
+.profile p{
+    color:#94a3b8;
+    font-size:14px;
+}
 
-</aside>
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar li{
+    padding:15px 25px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.sidebar li:hover{
+    background:#1e293b;
+}
+
+.menu-title{
+    color:#38bdf8;
+    font-weight:bold;
+}
+
+.submenu{
+    padding-left:45px !important;
+}
+
+/* Content */
+.content{
+    margin-left:280px;
+    width:calc(100% - 280px);
+    padding:30px;
+}
+
+.section{
+    display:none;
+}
+
+.section.active{
+    display:block;
+}
+
+.hero{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    padding:70px;
+    border-radius:20px;
+    margin-bottom:25px;
+}
+
+.hero h1{
+    margin-bottom:15px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    margin-bottom:20px;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+.card:hover{
+    transform:translateY(-3px);
+}
+
+.theory{
+    background:#eef4ff;
+    padding:15px;
+    border-left:5px solid #2563eb;
+    margin:15px 0;
+}
+
+pre{
+    background:#1e1e1e;
+    color:#fff;
+    padding:15px;
+    border-radius:10px;
+    overflow:auto;
+}
+
+.output{
+    background:#e8fff0;
+    padding:12px;
+    border-left:5px solid green;
+    margin-top:10px;
+}
+
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    margin-top:20px;
+}
+
+.topic-card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+
+        <div class="profile">
+            <h2>Sachin Patil</h2>
+            <p>Senior Software Engineer</p>
+        </div>
+
+        <ul>
+
+            <li onclick="showPage('home')">
+                🏠 Home
+            </li>
+
+            <li class="menu-title">
+                ☕ Java
+            </li>
+
+            <li class="submenu"
+                onclick="showPage('streams')">
+                ➜ Streams
+            </li>
+
+            <li class="submenu">
+                ➜ Collections
+            </li>
+
+            <li class="submenu">
+                ➜ Multithreading
+            </li>
+
+            <li onclick="showPage('springboot')">
+                🌱 Spring Boot
+            </li>
+
+            <li>🗄 Hibernate</li>
+
+            <li>📨 Kafka</li>
+
+            <li>🐇 RabbitMQ</li>
+
+            <li>📊 DSA</li>
+
+            <li>🏗 System Design</li>
+
+        </ul>
+
+    </aside>
+
+    <main class="content">
+
+        <!-- HOME PAGE -->
+
+        <section id="home" class="section active">
+
+            <div class="hero">
+
+                <h1>
+                    Software Engineering Learning Hub
+                </h1>
+
+                <p>
+                    Java • Spring Boot • Kafka • RabbitMQ •
+                    DSA • System Design • Microservices
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h2>Introduction</h2>
+
+                <p>
+                    Welcome to my learning and revision hub!
+                </p>
+
+                <br>
+
+                <p>
+                    I created this page to strengthen my
+                    understanding of core software engineering
+                    concepts and serve as a centralized
+                    knowledge base for continuous learning
+                    and quick revision.
+                </p>
+
+                <br>
+
+                <p>
+                    My primary focus areas include Java,
+                    Spring Boot, Hibernate, DSA,
+                    Apache Kafka, RabbitMQ,
+                    System Design, Databases,
+                    Microservices, Design Patterns,
+                    and many other technologies.
+                </p>
+
+            </div>
+
+            <div class="dashboard">
+
+                <div class="topic-card">
+                    <h3>☕ Java</h3>
+                    <p>Streams, Collections, Multithreading</p>
+                </div>
+
+                <div class="topic-card">
+                    <h3>🌱 Spring Boot</h3>
+                    <p>REST APIs, Security, JPA</p>
+                </div>
+
+                <div class="topic-card">
+                    <h3>📨 Kafka</h3>
+                    <p>Producers, Consumers, Partitions</p>
+                </div>
+
+                <div class="topic-card">
+                    <h3>🏗 System Design</h3>
+                    <p>Scalability, Caching, Load Balancing</p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- JAVA STREAMS -->
+
+        <section id="streams" class="section">
+
+            <h1>Java Streams</h1>
+
+            <br>
+
+            <div class="card">
+
+                <h2>Java Stream Parts</h2>
+
+                <div class="theory">
+                    Source → Intermediate Operations →
+                    Terminal Operation
+                </div>
+
+<pre>
+List&lt;Integer&gt; list = Arrays.asList(1,2,3,4);
+
+list.stream()
+    .filter(x -> x % 2 == 0)
+    .map(x -> x * 2)
+    .collect(Collectors.toList());
+</pre>
+
+                <div class="output">
+                    Output : [4,8]
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <h2>Min & Max</h2>
+
+<pre>
+list.stream().min(Integer::compareTo);
+list.stream().max(Integer::compareTo);
+</pre>
+
+                <div class="output">
+                    min : -1
+                    max : 6776
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <h2>Remove Duplicates</h2>
+
+<pre>
+list.stream().distinct()
+</pre>
+
+                <div class="output">
+                    [1,4,2,5,6,3]
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- SPRING BOOT -->
+
+        <section id="springboot" class="section">
+
+            <div class="card">
+
+                <h1>Spring Boot</h1>
+
+                <p>
+                    Spring Boot Notes,
+                    REST APIs,
+                    Security,
+                    JPA,
+                    Microservices,
+                    Interview Questions.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script>
+
+function showPage(id){
+
+    document
+        .querySelectorAll('.section')
+        .forEach(section=>{
+            section.classList.remove('active');
+        });
+
+    document
+        .getElementById(id)
+        .classList.add('active');
+}
+
+</script>
+
+</body>
+</html>
